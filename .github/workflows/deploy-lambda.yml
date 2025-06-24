@@ -49,8 +49,11 @@ jobs:
 
       - name: Build, tag, and push Docker image
         run: |
-          docker buildx build --platform linux/amd64 -t $ECR_IMAGE_URI .
-          docker push $ECR_IMAGE_URI
+          docker buildx build \
+            --platform linux/amd64 \
+            --tag $ECR_IMAGE_URI \
+            --push \
+            .
 
       - name: Create or update Lambda function
         env:
